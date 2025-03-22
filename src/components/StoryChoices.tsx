@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { Check } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const StoryChoices = () => {
   const [selectedChoice, setSelectedChoice] = useState<number | null>(null);
@@ -15,7 +16,7 @@ const StoryChoices = () => {
       
       <div className="mb-4">
         <p className="text-sm mb-6">
-          You discover that your daily routine might be impacting your sleep quality. What would you like to learn more about?
+          Try our interactive health scenarios. Each choice leads to different outcomes that can affect your virtual patient.
         </p>
         
         <div className="space-y-3">
@@ -33,7 +34,7 @@ const StoryChoices = () => {
               }`}>
                 {selectedChoice === 0 && <Check size={12} className="text-primary" />}
               </div>
-              <span>Sleep hygiene and best practices</span>
+              <span>Headache Treatment</span>
             </div>
           </button>
           
@@ -51,7 +52,7 @@ const StoryChoices = () => {
               }`}>
                 {selectedChoice === 1 && <Check size={12} className="text-primary" />}
               </div>
-              <span>Digital device impact on sleep</span>
+              <span>Sleep Improvement</span>
             </div>
           </button>
           
@@ -69,16 +70,16 @@ const StoryChoices = () => {
               }`}>
                 {selectedChoice === 2 && <Check size={12} className="text-primary" />}
               </div>
-              <span>Nutrition and its effect on sleep</span>
+              <span>Stress Management</span>
             </div>
           </button>
         </div>
       </div>
       
       {selectedChoice !== null && (
-        <button className="retro-button w-full mt-4 text-sm animate-fade-in">
-          CONTINUE
-        </button>
+        <Link to="/play" className="retro-button w-full mt-4 text-sm animate-fade-in block">
+          BEGIN SCENARIO
+        </Link>
       )}
     </div>
   );
