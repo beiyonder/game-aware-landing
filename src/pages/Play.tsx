@@ -1,13 +1,24 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GameScenario from "@/components/GameScenario";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import AnimatedCharacters from "@/components/AnimatedCharacters";
 
 const Play = () => {
   const [gameCompleted, setGameCompleted] = useState(false);
+  const [showCharacters, setShowCharacters] = useState(false);
+  
+  useEffect(() => {
+    // Show characters with a slight delay after component mounts
+    const timer = setTimeout(() => {
+      setShowCharacters(true);
+    }, 500);
+    
+    return () => clearTimeout(timer);
+  }, []);
   
   const handleGameRestart = () => {
     setGameCompleted(false);
@@ -26,6 +37,8 @@ const Play = () => {
             </Link>
             <h1 className="font-pixel text-3xl">HEALTH SCENARIO</h1>
           </div>
+          
+          {showCharacters && <AnimatedCharacters />}
           
           <div className="glass-panel rounded-lg crt-effect p-6 min-h-[500px]">
             <GameScenario onRestart={handleGameRestart} />
